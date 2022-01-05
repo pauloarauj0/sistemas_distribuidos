@@ -7,6 +7,7 @@ import java.util.logging.SimpleFormatter;
 public class Peer {
     String host;
     Logger logger;
+    boolean hasToken;
 
     public Peer(String hostname) {
         host = hostname;
@@ -22,9 +23,10 @@ public class Peer {
     }
 
     public static void main(String[] args) throws Exception {
+
         Peer peer = new Peer(args[0]);
         System.out.printf("new peer @ host=%s\n", args[0]);
-        new Thread(new Server(args[0], Integer.parseInt(args[1]), peer.logger)).start();
-        new Thread(new Client(args[0], peer.logger)).start();
+        new Thread(new Server(args[0], Integer.parseInt(args[1]), peer.logger, peer)).start();
+        new Thread(new Client(args[0], peer.logger, peer)).start();
     }
 }
