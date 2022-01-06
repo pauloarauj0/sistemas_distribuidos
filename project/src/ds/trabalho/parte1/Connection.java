@@ -28,11 +28,15 @@ public class Connection implements Runnable {
             BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
             PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
 
-            String command;
-            command = in.readLine();
-            logger.info("server: message from host " + clientAddress + "[command = " + command + "]");
-
+            int token = Integer.parseInt(in.readLine());
+            // System.out.println("Antes de receber o token: HasToken: " + peer.hasToken);
             peer.hasToken = true;
+
+            System.out.println("Recebi o token: " + token + "\nHasToken: " + peer.hasToken);
+
+            if (peer.hasToken) {
+                peer.token = token + 1;
+            }
 
             /*
              * close connection

@@ -16,19 +16,19 @@ public class Server implements Runnable {
         this.host = host;
         this.port = port;
         this.logger = logger;
-        server = new ServerSocket(port, 1, InetAddress.getByName(host));
+        this.server = new ServerSocket(port, 1, InetAddress.getByName(host));
         this.peer = peer;
     }
 
     @Override
     public void run() {
         try {
-            logger.info("server: endpoint running at port " + port + " ...");
+            // logger.info("server: endpoint running at port " + port + " ...");
             while (true) {
                 try {
                     Socket client = server.accept();
                     String clientAddress = client.getInetAddress().getHostAddress();
-                    logger.info("server: new connection from " + clientAddress);
+                    // logger.info("server: new connection from " + clientAddress);
                     new Thread(new Connection(clientAddress, client, logger, peer)).start();
                 } catch (Exception e) {
                     e.printStackTrace();

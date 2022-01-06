@@ -8,6 +8,7 @@ public class Peer {
     String host;
     Logger logger;
     boolean hasToken;
+    int token;
 
     public Peer(String hostname) {
         host = hostname;

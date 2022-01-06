@@ -1,10 +1,5 @@
 package ds.trabalho.parte1;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.net.InetAddress;
-import java.net.Socket;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
@@ -12,7 +7,7 @@ public class Client implements Runnable {
     String host;
     Logger logger;
     Scanner scanner;
-    int isUnlock;
+    boolean isLocked;
     Peer peer;
 
     public Client(String host, Logger logger, Peer peer) throws Exception {
@@ -25,53 +20,40 @@ public class Client implements Runnable {
     @Override
     public void run() {
         try {
-            logger.info("client: endpoint running ...\n");
+            // logger.info("client: endpoint running ...\n");
+            this.isLocked = false;
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Enter server ip and port:");
+            System.out.print("$ ");
+            String server = scanner.next();
+            String port = scanner.next();
+            System.out.println("Enter 'token' to start with the token");
+            String initToken = scanner.next();
+            System.out.println("initToken: " + initToken);
+            new Thread(new TokenSender(this, initToken, server, port)).start();
+
+            // TODO Auto-generated method stub
 
             while (true) {
-                try {
-                    /*
-                     * read command
-                     */
-                    System.out.print("$ ");
-                    String server = scanner.next();
-                    String port = scanner.next();
-                    String command = scanner.nextLine().replaceAll(" ", "");
-                    if (command.equals("token")) {
-                        peer.hasToken = true;
-                    }
+                System.out.print("$ ");
+                String command = scanner.next();
 
-                    if (command.equals("unlock") && peer.hasToken) {
-                        System.out.println("deu");
-                        /*
-                         * make connection
-                         */
-                        Socket socket = new Socket(InetAddress.getByName(server), Integer.parseInt(port));
-                        logger.info(
-                                "client: connected to server " + socket.getInetAddress() + "[port = " + socket.getPort()
-                                        + "]");
-                        /*
-                         * prepare socket I/O channels
-                         */
-                        PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-                        BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-                        /*
-                         * send command
-                         */
-                        out.println(command);
-                        out.flush();
-                        /*
-                         * close connection
-                         */
-                        socket.close();
-                    }
-
-                } catch (Exception e) {
-                    e.printStackTrace();
+                switch (command) {
+                    case "lock":
+                        this.isLocked = true;
+                        // System.out.println("I am locked");
+                        break;
+                    case "unlock":
+                        this.isLocked = false;
+                        // System.out.println("I am unlocked");
+                        break;
+                    default:
+                        break;
                 }
             }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
 }

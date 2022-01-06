@@ -1,0 +1,300 @@
+jan 06, 2022 3:40:52 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: endpoint running at port 5050 ...
+jan 06, 2022 3:40:52 DA TARDE ds.trabalho.parte1.Client run
+INFO: client: endpoint running ...
+
+jan 06, 2022 3:41:46 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: endpoint running at port 5050 ...
+jan 06, 2022 3:41:46 DA TARDE ds.trabalho.parte1.Client run
+INFO: client: endpoint running ...
+
+jan 06, 2022 3:42:59 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: endpoint running at port 5050 ...
+jan 06, 2022 3:42:59 DA TARDE ds.trabalho.parte1.Client run
+INFO: client: endpoint running ...
+
+jan 06, 2022 3:43:47 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: endpoint running at port 5050 ...
+jan 06, 2022 3:43:47 DA TARDE ds.trabalho.parte1.Client run
+INFO: client: endpoint running ...
+
+jan 06, 2022 3:45:09 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: endpoint running at port 5051 ...
+jan 06, 2022 3:45:09 DA TARDE ds.trabalho.parte1.Client run
+INFO: client: endpoint running ...
+
+jan 06, 2022 3:47:35 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: endpoint running at port 5050 ...
+jan 06, 2022 3:47:35 DA TARDE ds.trabalho.parte1.Client run
+INFO: client: endpoint running ...
+
+jan 06, 2022 3:48:55 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: new connection from 127.0.0.1
+jan 06, 2022 3:48:55 DA TARDE ds.trabalho.parte1.Client run
+INFO: client: connected to server localhost/127.0.0.1[port = 5050]
+jan 06, 2022 3:48:55 DA TARDE ds.trabalho.parte1.Connection run
+INFO: server: message from host 127.0.0.1[command = unlock]
+jan 06, 2022 3:49:03 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: endpoint running at port 5050 ...
+jan 06, 2022 3:49:03 DA TARDE ds.trabalho.parte1.Client run
+INFO: client: endpoint running ...
+
+jan 06, 2022 3:49:28 DA TARDE ds.trabalho.parte1.Client run
+INFO: client: connected to server localhost/127.0.0.1[port = 5051]
+jan 06, 2022 3:49:57 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: endpoint running at port 5050 ...
+jan 06, 2022 3:49:57 DA TARDE ds.trabalho.parte1.Client run
+INFO: client: endpoint running ...
+
+jan 06, 2022 3:50:27 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: endpoint running at port 5050 ...
+jan 06, 2022 3:50:27 DA TARDE ds.trabalho.parte1.Client run
+INFO: client: endpoint running ...
+
+jan 06, 2022 3:52:41 DA TARDE ds.trabalho.parte1.Client run
+INFO: client: connected to server localhost/127.0.0.1[port = 5051]
+jan 06, 2022 4:14:36 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: endpoint running at port 5050 ...
+jan 06, 2022 4:14:36 DA TARDE ds.trabalho.parte1.Client run
+INFO: client: endpoint running ...
+
+jan 06, 2022 4:16:14 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: endpoint running at port 5051 ...
+jan 06, 2022 4:16:14 DA TARDE ds.trabalho.parte1.Client run
+INFO: client: endpoint running ...
+
+jan 06, 2022 4:17:04 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: new connection from 127.0.0.1
+jan 06, 2022 4:17:04 DA TARDE ds.trabalho.parte1.Connection run
+INFO: server: message from host 127.0.0.1[command = unlock]
+jan 06, 2022 4:18:33 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: endpoint running at port 5050 ...
+jan 06, 2022 4:18:33 DA TARDE ds.trabalho.parte1.Client run
+INFO: client: endpoint running ...
+
+jan 06, 2022 4:18:50 DA TARDE ds.trabalho.parte1.Client run
+INFO: client: connected to server localhost/127.0.0.1[port = 5051]
+jan 06, 2022 4:36:30 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: endpoint running at port 5050 ...
+jan 06, 2022 4:36:30 DA TARDE ds.trabalho.parte1.Client run
+INFO: client: endpoint running ...
+
+jan 06, 2022 4:36:56 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: endpoint running at port 5050 ...
+jan 06, 2022 4:36:56 DA TARDE ds.trabalho.parte1.Client run
+INFO: client: endpoint running ...
+
+jan 06, 2022 4:38:26 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: endpoint running at port 5050 ...
+jan 06, 2022 4:38:26 DA TARDE ds.trabalho.parte1.Client run
+INFO: client: endpoint running ...
+
+jan 06, 2022 4:39:54 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: endpoint running at port 5050 ...
+jan 06, 2022 4:39:54 DA TARDE ds.trabalho.parte1.Client run
+INFO: client: endpoint running ...
+
+jan 06, 2022 4:40:25 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: endpoint running at port 5050 ...
+jan 06, 2022 4:40:25 DA TARDE ds.trabalho.parte1.Client run
+INFO: client: endpoint running ...
+
+jan 06, 2022 4:40:48 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: endpoint running at port 5050 ...
+jan 06, 2022 4:40:48 DA TARDE ds.trabalho.parte1.Client run
+INFO: client: endpoint running ...
+
+jan 06, 2022 4:42:00 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: endpoint running at port 5050 ...
+jan 06, 2022 4:42:00 DA TARDE ds.trabalho.parte1.Client run
+INFO: client: endpoint running ...
+
+jan 06, 2022 4:42:30 DA TARDE ds.trabalho.parte1.Client run
+INFO: client: connected to server localhost/127.0.0.1[port = 5051]
+jan 06, 2022 4:42:58 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: new connection from 127.0.0.1
+jan 06, 2022 4:42:58 DA TARDE ds.trabalho.parte1.Connection run
+INFO: server: message from host 127.0.0.1[Token recieved = 1]
+jan 06, 2022 4:43:03 DA TARDE ds.trabalho.parte1.Client run
+INFO: client: connected to server localhost/127.0.0.1[port = 5051]
+jan 06, 2022 4:43:07 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: new connection from 127.0.0.1
+jan 06, 2022 4:43:07 DA TARDE ds.trabalho.parte1.Connection run
+INFO: server: message from host 127.0.0.1[Token recieved = 3]
+jan 06, 2022 4:43:32 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: endpoint running at port 5050 ...
+jan 06, 2022 4:43:32 DA TARDE ds.trabalho.parte1.Client run
+INFO: client: endpoint running ...
+
+jan 06, 2022 4:44:03 DA TARDE ds.trabalho.parte1.Client run
+INFO: client: connected to server localhost/127.0.0.1[port = 5051]
+jan 06, 2022 4:44:12 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: new connection from 127.0.0.1
+jan 06, 2022 4:44:12 DA TARDE ds.trabalho.parte1.Connection run
+INFO: server: message from host 127.0.0.1[Token recieved = 2]
+jan 06, 2022 4:44:20 DA TARDE ds.trabalho.parte1.Client run
+INFO: client: connected to server localhost/127.0.0.1[port = 5051]
+jan 06, 2022 5:22:25 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: endpoint running at port 5050 ...
+jan 06, 2022 5:23:36 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: endpoint running at port 5050 ...
+jan 06, 2022 5:24:53 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: new connection from 127.0.0.1
+jan 06, 2022 5:24:54 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: new connection from 127.0.0.1
+jan 06, 2022 5:24:54 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: new connection from 127.0.0.1
+jan 06, 2022 5:24:54 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: new connection from 127.0.0.1
+jan 06, 2022 5:24:55 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: new connection from 127.0.0.1
+jan 06, 2022 5:24:56 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: new connection from 127.0.0.1
+jan 06, 2022 5:24:57 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: new connection from 127.0.0.1
+jan 06, 2022 5:24:57 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: new connection from 127.0.0.1
+jan 06, 2022 5:24:57 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: new connection from 127.0.0.1
+jan 06, 2022 5:24:57 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: new connection from 127.0.0.1
+jan 06, 2022 5:24:57 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: new connection from 127.0.0.1
+jan 06, 2022 5:24:57 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: new connection from 127.0.0.1
+jan 06, 2022 5:24:58 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: new connection from 127.0.0.1
+jan 06, 2022 5:25:00 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: new connection from 127.0.0.1
+jan 06, 2022 5:25:00 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: new connection from 127.0.0.1
+jan 06, 2022 5:27:01 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: endpoint running at port 5050 ...
+jan 06, 2022 5:27:28 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: new connection from 127.0.0.1
+jan 06, 2022 5:27:47 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: endpoint running at port 5050 ...
+jan 06, 2022 5:28:11 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: new connection from 127.0.0.1
+jan 06, 2022 5:36:14 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: endpoint running at port 5050 ...
+jan 06, 2022 5:36:46 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: endpoint running at port 5052 ...
+jan 06, 2022 5:37:11 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: new connection from 127.0.0.1
+jan 06, 2022 5:37:14 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: new connection from 127.0.0.1
+jan 06, 2022 5:37:16 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: new connection from 127.0.0.1
+jan 06, 2022 5:37:18 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: new connection from 127.0.0.1
+jan 06, 2022 5:37:20 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: new connection from 127.0.0.1
+jan 06, 2022 5:37:35 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: new connection from 127.0.0.1
+jan 06, 2022 5:37:37 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: new connection from 127.0.0.1
+jan 06, 2022 5:37:39 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: new connection from 127.0.0.1
+jan 06, 2022 5:37:49 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: new connection from 127.0.0.1
+jan 06, 2022 5:37:51 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: new connection from 127.0.0.1
+jan 06, 2022 5:37:53 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: new connection from 127.0.0.1
+jan 06, 2022 5:38:01 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: new connection from 127.0.0.1
+jan 06, 2022 5:38:03 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: new connection from 127.0.0.1
+jan 06, 2022 5:38:05 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: new connection from 127.0.0.1
+jan 06, 2022 5:38:16 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: endpoint running at port 5050 ...
+jan 06, 2022 5:38:44 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: new connection from 127.0.0.1
+jan 06, 2022 5:38:45 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: new connection from 127.0.0.1
+jan 06, 2022 5:38:46 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: new connection from 127.0.0.1
+jan 06, 2022 5:38:47 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: new connection from 127.0.0.1
+jan 06, 2022 5:38:48 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: new connection from 127.0.0.1
+jan 06, 2022 5:38:49 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: new connection from 127.0.0.1
+jan 06, 2022 5:38:50 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: new connection from 127.0.0.1
+jan 06, 2022 5:38:51 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: new connection from 127.0.0.1
+jan 06, 2022 5:38:52 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: new connection from 127.0.0.1
+jan 06, 2022 5:38:53 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: new connection from 127.0.0.1
+jan 06, 2022 5:38:54 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: new connection from 127.0.0.1
+jan 06, 2022 5:39:19 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: new connection from 127.0.0.1
+jan 06, 2022 5:39:20 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: new connection from 127.0.0.1
+jan 06, 2022 5:39:21 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: new connection from 127.0.0.1
+jan 06, 2022 5:39:22 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: new connection from 127.0.0.1
+jan 06, 2022 5:39:23 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: new connection from 127.0.0.1
+jan 06, 2022 5:39:24 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: new connection from 127.0.0.1
+jan 06, 2022 5:39:25 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: new connection from 127.0.0.1
+jan 06, 2022 5:39:30 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: endpoint running at port 5050 ...
+jan 06, 2022 5:41:39 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: endpoint running at port 5050 ...
+jan 06, 2022 5:42:05 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: new connection from 127.0.0.1
+jan 06, 2022 5:42:07 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: new connection from 127.0.0.1
+jan 06, 2022 5:42:09 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: new connection from 127.0.0.1
+jan 06, 2022 5:42:11 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: new connection from 127.0.0.1
+jan 06, 2022 5:42:13 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: new connection from 127.0.0.1
+jan 06, 2022 5:42:15 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: new connection from 127.0.0.1
+jan 06, 2022 5:42:17 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: new connection from 127.0.0.1
+jan 06, 2022 5:42:29 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: new connection from 127.0.0.1
+jan 06, 2022 5:42:31 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: new connection from 127.0.0.1
+jan 06, 2022 5:42:33 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: new connection from 127.0.0.1
+jan 06, 2022 5:42:35 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: new connection from 127.0.0.1
+jan 06, 2022 5:42:37 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: new connection from 127.0.0.1
+jan 06, 2022 5:42:39 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: new connection from 127.0.0.1
+jan 06, 2022 5:42:41 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: new connection from 127.0.0.1
+jan 06, 2022 5:42:43 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: new connection from 127.0.0.1
+jan 06, 2022 5:43:39 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: endpoint running at port 5050 ...
+jan 06, 2022 5:44:05 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: new connection from 127.0.0.1
+jan 06, 2022 5:44:07 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: new connection from 127.0.0.1
+jan 06, 2022 5:44:09 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: new connection from 127.0.0.1
+jan 06, 2022 5:44:11 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: new connection from 127.0.0.1
+jan 06, 2022 5:44:21 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: new connection from 127.0.0.1
+jan 06, 2022 5:44:23 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: new connection from 127.0.0.1
+jan 06, 2022 5:44:25 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: new connection from 127.0.0.1
+jan 06, 2022 5:44:27 DA TARDE ds.trabalho.parte1.Server run
+INFO: server: new connection from 127.0.0.1
