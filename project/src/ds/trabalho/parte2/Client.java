@@ -1,13 +1,13 @@
 package ds.trabalho.parte2;
 
-import java.util.Scanner;
-import java.util.logging.Logger;
-import java.io.PrintWriter;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.util.Arrays;
+import java.util.Scanner;
+import java.util.logging.Logger;
 
 public class Client implements Runnable {
     String host;
@@ -23,14 +23,9 @@ public class Client implements Runnable {
         this.peer = peer;
     }
 
-    void register(String ip) throws Exception {
+    void register(String ip, String port) throws Exception {
         this.peer.register(ip);
         System.out.println("Current table: " + Arrays.toString(this.peer.table));
-
-        System.out.print("registerPort# ");
-        String port = scanner.next();
-        // String port = ip; // <-------------
-        // ip = "localhost"; // <-------------
 
         Socket socket = new Socket(InetAddress.getByName(ip), Integer.parseInt(port));
 
@@ -41,11 +36,7 @@ public class Client implements Runnable {
         socket.close();
     }
 
-    void pull(String ip) throws Exception {
-        System.out.print("registerPort# ");
-        String port = scanner.next();
-        // String port = ip; // <-------------
-        // ip = "localhost"; // <-------------
+    void pull(String ip, String port) throws Exception {
 
         Socket socket = new Socket(InetAddress.getByName(ip), Integer.parseInt(port));
 
@@ -54,27 +45,19 @@ public class Client implements Runnable {
         out.println("pull");
         out.flush();
 
-        String msgRecieved;
-        if ((msgRecieved = in.readLine()) != null) {
-            for (String a : msgRecieved.split(" "))
-                this.peer.addValue(a);
-        }
+        this.peer.recieveValues(in.readLine());
         socket.close();
 
     }
 
-    void push(String ip) throws Exception {
-        // System.out.print("registerPort# ");
-        // String port = scanner.next();
-        String port = ip; // <-------------
-        ip = "localhost"; // <-------------
+    void push(String ip, String port) throws Exception {
 
         Socket socket = new Socket(InetAddress.getByName(ip), Integer.parseInt(port));
-
         PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-
-        out.println("push ");
+        out.println("push");
         out.flush();
+
+        this.peer.sendValues(out);
         socket.close();
     }
 
@@ -83,31 +66,55 @@ public class Client implements Runnable {
         try {
             Scanner scanner = new Scanner(System.in);
             String ip;
+            String port;
+            System.out.println("Type 'help' to see a list of possible commands");
             while (true) {
                 System.out.print("$ ");
                 String command = scanner.next();
 
                 switch (command) {
                     case "register":
+                        System.out.print("register IP# ");
                         ip = scanner.next();
-                        register(ip);
+                        System.out.print("register Port# ");
+                        port = scanner.next();
+                        register(ip, port);
                         break;
                     case "push":
+                        System.out.print("push IP# ");
                         ip = scanner.next();
-                        push(ip);
+                        System.out.print("push Port# ");
+                        port = scanner.next();
+                        push(ip, port);
                         break;
                     case "pull":
+                        System.out.print("pull IP# ");
                         ip = scanner.next();
-                        pull(ip);
+                        System.out.print("pull Port# ");
+                        port = scanner.next();
+                        pull(ip, port);
                         break;
                     case "pushpull":
+                        System.out.print("push-pull IP# ");
                         ip = scanner.next();
+                        System.out.print("push-pull Port# ");
+                        port = scanner.next();
+                        pull(ip, port);
+                        push(ip, port);
                         break;
                     case "add":
                         this.peer.dictionary.add(scanner.next());
                         break;
                     case "get":
                         System.out.println("Current Dictionay: " + this.peer.dictionary);
+                        break;
+                    case "help":
+                        System.out.println("List of possible commands:");
+                        System.out.println("\t1-'push' : Pushes the dictionary");
+                        System.out.println("\t2-'pull' : Pulls the dictionary");
+                        System.out.println("\t3-'pushpull': Pulls the dictionary");
+                        System.out.println("\t4-'get': Displays the current dictionary");
+
                         break;
                     default:
                         System.out.println("Unknown Command!");

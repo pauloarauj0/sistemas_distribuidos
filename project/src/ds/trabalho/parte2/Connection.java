@@ -41,14 +41,16 @@ public class Connection implements Runnable {
                     this.peer.register(clientAddress);
                     break;
                 case "pull":
-                    if (isRegisterd(clientAddress)) {
-                        for (int i = 0; i < this.peer.dictionary.size(); i++) {
-                            out.print(this.peer.dictionary.get(i) + " ");
-                        }
-                        out.flush();
-                    } else
+                    if (isRegisterd(clientAddress))
+                        this.peer.sendValues(out);
+                    else
                         System.out.println("Connetcion refused - (" + clientAddress + ") not registerd");
-
+                    break;
+                case "push":
+                    if (isRegisterd(clientAddress))
+                        this.peer.recieveValues(in.readLine());
+                    else
+                        System.out.println("Connetcion refused - (" + clientAddress + ") not registerd");
                     break;
                 default:
                     break;
