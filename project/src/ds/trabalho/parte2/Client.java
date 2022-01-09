@@ -13,7 +13,6 @@ public class Client implements Runnable {
     String host;
     Logger logger;
     Scanner scanner;
-    boolean isLocked;
     Peer peer;
 
     public Client(String host, Logger logger, Peer peer) throws Exception {
@@ -26,39 +25,49 @@ public class Client implements Runnable {
     void register(String ip, String port) throws Exception {
         this.peer.register(ip);
         System.out.println("Current table: " + Arrays.toString(this.peer.table));
+        try {
+            Socket socket = new Socket(InetAddress.getByName(ip), Integer.parseInt(port));
 
-        Socket socket = new Socket(InetAddress.getByName(ip), Integer.parseInt(port));
+            PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
 
-        PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+            out.println("register");
+            out.flush();
+            socket.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-        out.println("register");
-        out.flush();
-        socket.close();
     }
 
     void pull(String ip, String port) throws Exception {
+        try {
+            Socket socket = new Socket(InetAddress.getByName(ip), Integer.parseInt(port));
 
-        Socket socket = new Socket(InetAddress.getByName(ip), Integer.parseInt(port));
+            PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+            BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            out.println("pull");
+            out.flush();
 
-        PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-        BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-        out.println("pull");
-        out.flush();
-
-        this.peer.recieveValues(in.readLine());
-        socket.close();
+            this.peer.recieveValues(in.readLine());
+            socket.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
     void push(String ip, String port) throws Exception {
+        try {
+            Socket socket = new Socket(InetAddress.getByName(ip), Integer.parseInt(port));
+            PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+            out.println("push");
+            out.flush();
 
-        Socket socket = new Socket(InetAddress.getByName(ip), Integer.parseInt(port));
-        PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-        out.println("push");
-        out.flush();
-
-        this.peer.sendValues(out);
-        socket.close();
+            this.peer.sendValues(out);
+            socket.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
