@@ -1,7 +1,5 @@
 package ds.trabalho.parte3;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.Socket;
@@ -43,6 +41,7 @@ public class Client implements Runnable {
     void sendMessage(String msg) {
         String ip;
         String port = "5051";
+        this.peer.clock += 1;
         for (int i = 0; i < this.peer.table.length; i++) {
             ip = this.peer.table[i];
             if (ip != null)
@@ -52,7 +51,7 @@ public class Client implements Runnable {
                     PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
 
                     out.println("send");
-                    out.println(msg);
+                    out.println(msg + "|" + this.peer.clock);
                     out.flush();
                     socket.close();
                 } catch (Exception e) {

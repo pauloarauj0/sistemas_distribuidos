@@ -3,6 +3,7 @@ package ds.trabalho.parte3;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.net.InetAddress;
 import java.net.Socket;
 import java.util.logging.Logger;
 
@@ -26,11 +27,43 @@ public class Connection implements Runnable {
         return false;
     }
 
+    void recieved(String msg) {
+        String[] msgSplitted = msg.split("|");
+        int clock;
+
+        clock = Integer.parseInt(msgSplitted[1]);
+        this.peer.clock = Math.max(this.peer.clock, clock) + 1;
+
+        boolean isBleat = false;
+        if (!msgSplitted[0].equals("bleat"))
+            isBleat = true;
+
+        // bleat to everyone
+        if (!isBleat) {
+            for (String ip : this.peer.table) {
+                try {
+                    // !!!!!!!!!!!!!!!!!!!!!!!!!!! SUBSTITUIR !!!!!!!!!!!!!!!!!!!!!!!!!!!
+                    Socket socket = new Socket(InetAddress.getByName("localhost"), Integer.parseInt(ip));
+                    // !!!!!!!!!!!!!!!!!!!!!!!!!!! SUBSTITUIR !!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+                    PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+                    out.println("bleat|" + this.peer.clock);
+                    out.flush();
+                    socket.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        System.out.println();
+
+    }
+
     @Override
     public void run() {
         try {
             BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-            PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
 
             String msg = in.readLine();
             // System.out.println(msg + " requested");
@@ -41,9 +74,10 @@ public class Connection implements Runnable {
                     this.peer.register(clientAddress);
                     break;
                 case "send":
-                    if (isRegisterd(this.clientAddress))
-                        System.out.println(in.readLine());
-                    return;
+                    if (isRegisterd(this.clientAddress)) {
+                        recieved(in.readLine());
+                    }
+                    break;
                 default:
                     break;
             }
