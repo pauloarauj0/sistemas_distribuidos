@@ -19,7 +19,7 @@ Executar o comando: "make run-parte1"
 Executar o comando: "make compile-parte2"
 
 ### Executar
-Executar o comando: "make run-parte1"
+Executar o comando: "make run-parte2"
 
 ## Parte 3 
 ### Compilar
