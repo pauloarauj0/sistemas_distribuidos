@@ -1,16 +1,22 @@
 package ds.trabalho.parte3;
 
 import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.logging.FileHandler;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 
 public class Peer {
     String host;
     int port;
     Logger logger;
     LinkedList<Peer> table = new LinkedList<Peer>();
+    HashMap<Integer, String> messageHistory = new HashMap<>();
     // Peer[] table = new Peer[3];
     int clock;
 
@@ -36,7 +42,13 @@ public class Peer {
         }
         p.host = "127.0.0.1";
         table.add(p);
+    }
 
+    void getMessages() {
+        List<Integer> sortedList = new ArrayList<>(messageHistory.keySet());
+        Collections.sort(sortedList);
+        for (Integer n : sortedList)
+            System.out.println(n + ": " + messageHistory.get(n));
     }
 
     public static void main(String[] args) throws Exception {

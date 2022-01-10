@@ -27,62 +27,32 @@ public class Connection implements Runnable {
         return false;
     }
 
-    void recieved(String msg, int clock) {
-        // String[] msgSplitted = msg.split("-");
-        // int clock;
-
-        // clock = Integer.parseInt(msgSplitted[1]);
+    void sendBleat(int clock) {
+        // System.out.println("Current Peer clock:" + this.peer.clock);
+        // System.out.println("Clock Recieved:" + clock);
         this.peer.clock = Math.max(this.peer.clock, clock) + 1;
-        boolean isBleat = false;
-        if (msg.equals("bleat"))
-            isBleat = true;
-        else {
-            String host;
-            int port;
-            for (int i = 0; i < this.peer.table.size(); i++) {
-                try {
-                    host = this.peer.table.get(i).host;
-                    port = this.peer.table.get(i).port;
-                    System.out.println("Message from: " + this.peer.table.get(i).port + " " + msg);
 
-                    // !!!!!!!!!!!!!!!!!!!!!!!!!!! SUBSTITUIR !!!!!!!!!!!!!!!!!!!!!!!!!!!
-                    Socket socket = new Socket(InetAddress.getByName(host), port);
-                    // !!!!!!!!!!!!!!!!!!!!!!!!!!! SUBSTITUIR !!!!!!!!!!!!!!!!!!!!!!!!!!!
+        String host;
+        int port;
+        for (int i = 0; i < this.peer.table.size(); i++) {
+            try {
+                host = this.peer.table.get(i).host;
+                port = this.peer.table.get(i).port;
+                // System.out.println("Message from: " + this.peer.table.get(i).port + " " +
+                // msg);
 
-                    PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-                    // out.println("" + "-" + this.peer.clock);
-                    // out.flush();
-                    socket.close();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                // !!!!!!!!!!!!!!!!!!!!!!!!!!! SUBSTITUIR !!!!!!!!!!!!!!!!!!!!!!!!!!!
+                Socket socket = new Socket(InetAddress.getByName(host), port);
+                // !!!!!!!!!!!!!!!!!!!!!!!!!!! SUBSTITUIR !!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+                PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+                out.println("bleat" + '-' + this.peer.clock);
+                out.flush();
+                socket.close();
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-            // }
-            // // bleat to everyone
-            // if (!isBleat) {
-            // String host;
-            // int port;
-            // for (int i = 0; i < this.peer.table.size(); i++) {
-            // try {
-            // host = this.peer.table.get(i).host;
-            // port = this.peer.table.get(i).port;
-
-            // // !!!!!!!!!!!!!!!!!!!!!!!!!!! SUBSTITUIR !!!!!!!!!!!!!!!!!!!!!!!!!!!
-            // Socket socket = new Socket(InetAddress.getByName(host), port);
-            // // !!!!!!!!!!!!!!!!!!!!!!!!!!! SUBSTITUIR !!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-            // PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-            // out.println("bleat-" + this.peer.clock);
-            // out.flush();
-            // socket.close();
-            // } catch (Exception e) {
-            // e.printStackTrace();
-            // }
-            // }
         }
-
-        System.out.println();
-
     }
 
     @Override
@@ -90,16 +60,11 @@ public class Connection implements Runnable {
         try {
             BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 
-            int clock;
             String msg = in.readLine();
-            // System.out.println(msg + " requested");
-            // System.out.println("na merda: " + msg);
-            if (msg == null) {
-
-            }
-            String[] command = msg.split("-");
-            for (String s : command)
-                System.out.println("Mensgame:" + s);
+            String[] command = msg.split("-", 3);
+            // System.out.println(Arrays.toString(command));
+            // for (String s : command)
+            // System.out.println("Mensagem: " + s);
             switch (command[0]) {
                 case "register":
                     Peer p = new Peer(this.clientAddress, Integer.parseInt(command[1]));
@@ -107,10 +72,15 @@ public class Connection implements Runnable {
                     break;
                 case "recieve":
                     if (isRegisterd(this.clientAddress)) {
-                        msg = command[1];
-                        clock = Integer.parseInt(command[2]);
-                        recieved(msg, clock);
+                        int clock = Integer.parseInt(command[1]);
+                        msg = command[2];
+                        System.out.println(clock + " - " + msg);
+                        this.peer.messageHistory.put(clock, msg);
+                        sendBleat(clock);
                     }
+                    break;
+                case "bleat":
+                    this.peer.clock = Math.max(this.peer.clock, Integer.parseInt(command[1])) + 1;
                     break;
                 default:
                     break;
