@@ -4,7 +4,6 @@ import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.sql.Timestamp;
-import java.util.Arrays;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
@@ -21,16 +20,17 @@ public class Client implements Runnable {
         this.peer = peer;
     }
 
-    void register(String ip, String port) throws Exception {
-        this.peer.register(ip);
-        System.out.println("Current table: " + Arrays.toString(this.peer.table));
+    void register(Peer p) throws Exception {
+
+        this.peer.register(p);
+        // System.out.println("Current table: " + Arrays.toString(this.peer.table));
 
         try {
-            Socket socket = new Socket(InetAddress.getByName(ip), Integer.parseInt(port));
+            Socket socket = new Socket(InetAddress.getByName(p.host), p.port);
 
             PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
 
-            out.println("register");
+            out.println("register-" + String.valueOf(this.peer.port));
             out.flush();
             socket.close();
         } catch (Exception e) {
@@ -40,24 +40,29 @@ public class Client implements Runnable {
 
     void sendMessage(String msg) {
         String ip;
-        String port = "5051";
+        int port;
         this.peer.clock += 1;
-        for (int i = 0; i < this.peer.table.length; i++) {
-            ip = this.peer.table[i];
+        System.out.println("IP:" + this.peer.table.get(0).host);
+        System.out.println("PORT:" + this.peer.table.get(0).port);
+
+        for (int i = 0; i < this.peer.table.size(); i++) {
+            ip = this.peer.table.get(i).host;
+            port = this.peer.table.get(i).port;
             if (ip != null)
                 try {
-                    Socket socket = new Socket(InetAddress.getByName(ip), Integer.parseInt(port));
-
+                    Socket socket = new Socket(InetAddress.getByName(ip), port);
                     PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-
-                    out.println("send");
-                    out.println(msg + "|" + this.peer.clock);
+                    out.println("recieve" + "-" + msg + "-" + this.peer.clock);
                     out.flush();
                     socket.close();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
         }
+    }
+
+    void recieveMessage() {
+
     }
 
     @Override
@@ -77,16 +82,23 @@ public class Client implements Runnable {
                         ip = scanner.next();
                         System.out.print("register Port# ");
                         port = scanner.next();
-                        register(ip, port);
-                        break;
+                        Peer p = new Peer(ip, Integer.parseInt(port));
+                        // System.out.println("Host: " + p.host);
+                        // System.out.println("Port: " + p.port);
 
+                        register(p);
+                        break;
+                    case "send":
+                        msg = scanner.nextLine();
+                        sendMessage(msg);
+                        break;
                     case "help":
                         System.out.println("List of possible commands:");
                         System.out.println("\tregister - registers a machine's ip on the allowed table");
                         break;
                     default:
                         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-                        sendMessage(timestamp + " " + msg);
+                        // sendMessage(timestamp + " " + msg);
                         break;
                 }
             }
