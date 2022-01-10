@@ -64,7 +64,7 @@ public class Connection implements Runnable {
             Collections.sort(sortedList);
 
             for (Integer n : sortedList) {
-                System.out.println(this.clientAddress + ": " + this.peer.messageHistory.get(n));
+                System.out.println(n + ": " + this.peer.messageHistory.get(n));
                 this.peer.messageHistory.remove(n);
             }
 
