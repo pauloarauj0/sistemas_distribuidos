@@ -5,6 +5,9 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.logging.Logger;
 
 public class Connection implements Runnable {
@@ -38,13 +41,7 @@ public class Connection implements Runnable {
             try {
                 host = this.peer.table.get(i).host;
                 port = this.peer.table.get(i).port;
-                // System.out.println("Message from: " + this.peer.table.get(i).port + " " +
-                // msg);
-
-                // !!!!!!!!!!!!!!!!!!!!!!!!!!! SUBSTITUIR !!!!!!!!!!!!!!!!!!!!!!!!!!!
                 Socket socket = new Socket(InetAddress.getByName(host), port);
-                // !!!!!!!!!!!!!!!!!!!!!!!!!!! SUBSTITUIR !!!!!!!!!!!!!!!!!!!!!!!!!!!
-
                 PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
                 out.println("bleat" + '-' + this.peer.clock);
                 out.flush();
@@ -55,28 +52,47 @@ public class Connection implements Runnable {
         }
     }
 
+    void recieve(int clock, String msg) {
+        if (!msg.equals("bleat")) {
+            sendBleat(clock);
+        }
+
+        this.peer.messageHistory.put(clock, msg);
+
+        while (!this.peer.messageHistory.isEmpty()) {
+            List<Integer> sortedList = new ArrayList<>(this.peer.messageHistory.keySet());
+            Collections.sort(sortedList);
+
+            for (Integer n : sortedList) {
+                System.out.println(this.clientAddress + ": " + this.peer.messageHistory.get(n));
+                this.peer.messageHistory.remove(n);
+            }
+
+        }
+        // System.out.println(clock + " - " + msg);
+    }
+
     @Override
     public void run() {
         try {
             BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 
             String msg = in.readLine();
-            String[] command = msg.split("-", 3);
+            String[] command = msg.split("-");
             // System.out.println(Arrays.toString(command));
             // for (String s : command)
             // System.out.println("Mensagem: " + s);
             switch (command[0]) {
                 case "register":
-                    Peer p = new Peer(this.clientAddress, Integer.parseInt(command[1]));
+                    Peer p = new Peer(command[1], Integer.parseInt(command[2]));
                     this.peer.register(p);
                     break;
                 case "recieve":
                     if (isRegisterd(this.clientAddress)) {
                         int clock = Integer.parseInt(command[1]);
                         msg = command[2];
-                        System.out.println(clock + " - " + msg);
-                        this.peer.messageHistory.put(clock, msg);
-                        sendBleat(clock);
+                        recieve(clock, msg);
+
                     }
                     break;
                 case "bleat":
@@ -86,7 +102,7 @@ public class Connection implements Runnable {
                     break;
             }
 
-            System.out.print("$ ");
+            // System.out.print("$ ");
             clientSocket.close();
         } catch (Exception e) {
             e.printStackTrace();

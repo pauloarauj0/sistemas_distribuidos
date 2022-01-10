@@ -26,7 +26,7 @@ public class Client implements Runnable {
 
             PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
 
-            out.println("register-" + String.valueOf(this.peer.port));
+            out.println("register-" + this.peer.host + "-" + String.valueOf(this.peer.port));
             out.flush();
             socket.close();
             this.peer.register(p);
@@ -38,10 +38,11 @@ public class Client implements Runnable {
     void sendMessage(String msg) {
         String ip;
         int port;
+        if (msg.equals(""))
+            return;
         this.peer.clock += 1;
         // System.out.println("IP:" + this.peer.table.get(0).host);
         // System.out.println("PORT:" + this.peer.table.get(0).port);
-
         for (int i = 0; i < this.peer.table.size(); i++) {
             ip = this.peer.table.get(i).host;
             port = this.peer.table.get(i).port;
@@ -52,7 +53,7 @@ public class Client implements Runnable {
                     out.println("recieve" + '-' + this.peer.clock + '-' + msg);
                     out.flush();
                     socket.close();
-                    this.peer.messageHistory.put(this.peer.clock, msg);
+                    // this.peer.messageHistory.put(this.peer.clock, msg);
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -77,10 +78,9 @@ public class Client implements Runnable {
                 String[] command = msg.split(" ", 2);
                 switch (command[0]) {
                     case "register":
-                        System.out.print("register IP# ");
-                        ip = scanner.nextLine();
-                        System.out.print("register Port# ");
-                        port = scanner.nextLine();
+                        System.out.println("register IP and Port ");
+                        ip = scanner.next();
+                        port = scanner.next();
 
                         Peer p = new Peer(ip, Integer.parseInt(port));
                         register(p);
@@ -95,6 +95,7 @@ public class Client implements Runnable {
                         break;
                     default:
                         sendMessage(msg);
+
                         break;
                 }
             }

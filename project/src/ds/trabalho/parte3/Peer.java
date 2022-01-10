@@ -1,15 +1,14 @@
 package ds.trabalho.parte3;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
 import java.util.logging.FileHandler;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
 
 public class Peer {
     String host;
@@ -40,8 +39,13 @@ public class Peer {
             if (table.get(i).host.equals(p.host))
                 return;
         }
-        p.host = "127.0.0.1";
+        // debug
+        if (p.host.equals("localhost")) {
+            p.host = "127.0.0.1";
+        }
+
         table.add(p);
+        System.out.println("Added " + p.host + ":" + p.port);
     }
 
     void getMessages() {
