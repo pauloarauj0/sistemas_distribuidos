@@ -27,7 +27,6 @@ public class Server implements Runnable {
                 try {
                     Socket client = server.accept();
                     String clientAddress = client.getInetAddress().getHostAddress();
-
                     // Prints out the Address of the newly created connection
                     // System.out.println("Connection from " + clientAddress + " allowed");
 

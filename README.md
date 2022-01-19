@@ -16,10 +16,15 @@ Executar o comando: "make run-parte1"
 ## Parte 2 
 ### Compilar
 
-### Executar
+Executar o comando: "make compile-parte2"
 
+### Executar
+Executar o comando: "make run-parte2"
 
 ## Parte 3 
 ### Compilar
 
+Executar o comando: "make compile-parte3"
+
 ### Executar
+Executar o comando: "make run-parte3"

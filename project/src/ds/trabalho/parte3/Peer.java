@@ -1,5 +1,10 @@
 package ds.trabalho.parte3;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Scanner;
 import java.util.logging.FileHandler;
 import java.util.logging.Logger;
@@ -7,12 +12,16 @@ import java.util.logging.SimpleFormatter;
 
 public class Peer {
     String host;
+    int port;
     Logger logger;
-    String[] table = new String[3];
+    LinkedList<Peer> table = new LinkedList<Peer>();
+    HashMap<Integer, String> messageHistory = new HashMap<>();
+    // Peer[] table = new Peer[3];
     int clock;
 
-    public Peer(String hostname) {
-        host = hostname;
+    public Peer(String hostname, int port) {
+        this.host = hostname;
+        this.port = port;
         logger = Logger.getLogger("logfile");
         try {
             FileHandler handler = new FileHandler("./" + hostname + "_peer.log", true);
@@ -25,15 +34,25 @@ public class Peer {
         }
     }
 
-    void register(String s) {
-        for (int i = 0; i < table.length; i++) {
-            if (s.equals(table[i]))
+    void register(Peer p) {
+        for (int i = 0; i < table.size(); i++) {
+            if (table.get(i).host.equals(p.host))
                 return;
-            if (table[i] == null) {
-                table[i] = s;
-                return;
-            }
         }
+        // debug
+        if (p.host.equals("localhost")) {
+            p.host = "127.0.0.1";
+        }
+
+        table.add(p);
+        System.out.println("Added " + p.host + ":" + p.port);
+    }
+
+    void getMessages() {
+        List<Integer> sortedList = new ArrayList<>(messageHistory.keySet());
+        Collections.sort(sortedList);
+        for (Integer n : sortedList)
+            System.out.println(n + ": " + messageHistory.get(n));
     }
 
     public static void main(String[] args) throws Exception {
@@ -43,7 +62,7 @@ public class Peer {
         String host = sc.next();
         String port = sc.next();
 
-        Peer peer = new Peer(host);
+        Peer peer = new Peer(host, Integer.parseInt(port));
 
         System.out.printf("new peer @ host=%s\n", host);
         new Thread(new Server(host, Integer.parseInt(port), peer.logger, peer)).start();

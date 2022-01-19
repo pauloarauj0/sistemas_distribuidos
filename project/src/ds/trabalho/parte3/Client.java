@@ -3,8 +3,6 @@ package ds.trabalho.parte3;
 import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.Socket;
-import java.sql.Timestamp;
-import java.util.Arrays;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
@@ -21,18 +19,17 @@ public class Client implements Runnable {
         this.peer = peer;
     }
 
-    void register(String ip, String port) throws Exception {
-        this.peer.register(ip);
-        System.out.println("Current table: " + Arrays.toString(this.peer.table));
-
+    void register(Peer p) throws Exception {
+        // System.out.println("Current table: " + Arrays.toString(this.peer.table));
         try {
-            Socket socket = new Socket(InetAddress.getByName(ip), Integer.parseInt(port));
+            Socket socket = new Socket(InetAddress.getByName(p.host), p.port);
 
             PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
 
-            out.println("register");
+            out.println("register-" + this.peer.host + "-" + String.valueOf(this.peer.port));
             out.flush();
             socket.close();
+            this.peer.register(p);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -40,24 +37,32 @@ public class Client implements Runnable {
 
     void sendMessage(String msg) {
         String ip;
-        String port = "5051";
+        int port;
+        if (msg.equals(""))
+            return;
         this.peer.clock += 1;
-        for (int i = 0; i < this.peer.table.length; i++) {
-            ip = this.peer.table[i];
+        // System.out.println("IP:" + this.peer.table.get(0).host);
+        // System.out.println("PORT:" + this.peer.table.get(0).port);
+        for (int i = 0; i < this.peer.table.size(); i++) {
+            ip = this.peer.table.get(i).host;
+            port = this.peer.table.get(i).port;
             if (ip != null)
                 try {
-                    Socket socket = new Socket(InetAddress.getByName(ip), Integer.parseInt(port));
-
+                    Socket socket = new Socket(InetAddress.getByName(ip), port);
                     PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-
-                    out.println("send");
-                    out.println(msg + "|" + this.peer.clock);
+                    out.println("recieve" + '-' + this.peer.clock + '-' + msg);
                     out.flush();
                     socket.close();
+                    // this.peer.messageHistory.put(this.peer.clock, msg);
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
         }
+    }
+
+    void recieveMessage() {
+
     }
 
     @Override
@@ -73,20 +78,24 @@ public class Client implements Runnable {
                 String[] command = msg.split(" ", 2);
                 switch (command[0]) {
                     case "register":
-                        System.out.print("register IP# ");
+                        System.out.println("register IP and Port ");
                         ip = scanner.next();
-                        System.out.print("register Port# ");
                         port = scanner.next();
-                        register(ip, port);
-                        break;
 
+                        Peer p = new Peer(ip, Integer.parseInt(port));
+                        register(p);
+                        break;
+                    case "getMessages":
+                        this.peer.getMessages();
+                        break;
                     case "help":
                         System.out.println("List of possible commands:");
                         System.out.println("\tregister - registers a machine's ip on the allowed table");
+                        System.out.println("\tgetMessages - Shows the current peer's messageHistory");
                         break;
                     default:
-                        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-                        sendMessage(timestamp + " " + msg);
+                        sendMessage(msg);
+
                         break;
                 }
             }
